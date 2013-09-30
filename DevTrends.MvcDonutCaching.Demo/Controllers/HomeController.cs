@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace DevTrends.MvcDonutCaching.Demo.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ApplicationController
     {
         public ActionResult Index()
         {
@@ -29,6 +29,20 @@ namespace DevTrends.MvcDonutCaching.Demo.Controllers
         public ActionResult SimpleDonutTwo()
         {
             return PartialView(DateTime.Now);
+        }
+
+        public ActionResult ExpireSimpleDonutCache()
+        {
+            OutputCacheManager.RemoveItem("Home", "Simple");
+
+            return Content("OK", "text/plain");
+        }
+
+        public ActionResult ExpireSimpleDonutOneCache()
+        {
+            OutputCacheManager.RemoveItem("Home", "SimpleDonutOne");
+
+            return Content("OK", "text/plain");
         }
 
         public void ExpireSimpleDonutCache()
