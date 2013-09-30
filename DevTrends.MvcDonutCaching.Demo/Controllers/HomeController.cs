@@ -4,9 +4,9 @@ using System.Web.Mvc;
 
 namespace DevTrends.MvcDonutCaching.Demo.Controllers
 {
-    public class HomeController : ApplicationController
+    public partial class HomeController : ApplicationController
     {
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return RedirectToAction("Simple");
         }
@@ -14,47 +14,36 @@ namespace DevTrends.MvcDonutCaching.Demo.Controllers
         //
         // GET: /Home/
         [DonutOutputCache(Duration = 24 * 3600)]
-        public ActionResult Simple()
+        public virtual ActionResult Simple()
         {
             return View(DateTime.Now);
         }
 
         [ChildActionOnly, DonutOutputCache(Duration = 60)]
-        public ActionResult SimpleDonutOne()
+        public virtual ActionResult SimpleDonutOne()
         {
             return PartialView(DateTime.Now);
         }
 
         [ChildActionOnly]
-        public ActionResult SimpleDonutTwo()
+        public virtual ActionResult SimpleDonutTwo()
         {
             return PartialView(DateTime.Now);
         }
 
-        public ActionResult ExpireSimpleDonutCache()
+        public virtual ActionResult ExpireSimpleDonutCache()
         {
             OutputCacheManager.RemoveItem("Home", "Simple");
 
             return Content("OK", "text/plain");
         }
 
-        public ActionResult ExpireSimpleDonutOneCache()
+        public virtual ActionResult ExpireSimpleDonutOneCache()
         {
             OutputCacheManager.RemoveItem("Home", "SimpleDonutOne");
 
             return Content("OK", "text/plain");
         }
 
-        public void ExpireSimpleDonutCache()
-        {
-            var cacheManager = new OutputCacheManager();
-            cacheManager.RemoveItem("Home", "Simple");
-        }
-
-        public void ExpireSimpleDonutOneCache()
-        {
-            var cacheManager = new OutputCacheManager();
-            cacheManager.RemoveItem("Home", "SimpleDonutOne");
-        }
     }
 }

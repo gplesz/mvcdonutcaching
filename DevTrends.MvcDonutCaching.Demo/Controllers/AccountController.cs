@@ -6,12 +6,12 @@ using DevTrends.MvcDonutCaching.Demo.Models;
 namespace DevTrends.MvcDonutCaching.Demo.Controllers
 {
     [Authorize]
-    public class AccountController : ApplicationController
+    public partial class AccountController : ApplicationController
     {
         //
         // GET: /Account/LogIn
         [AllowAnonymous]
-        public ActionResult LogIn()
+        public virtual ActionResult LogIn()
         {
             return View();
         }
@@ -19,7 +19,7 @@ namespace DevTrends.MvcDonutCaching.Demo.Controllers
         //
         // POST: /Account/LogIn
         [AllowAnonymous, HttpPost]
-        public ActionResult LogIn(LogOnModel model, string returnUrl)
+        public virtual ActionResult LogIn(LogOnModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -45,7 +45,7 @@ namespace DevTrends.MvcDonutCaching.Demo.Controllers
 
         //
         // GET: /Account/LogOut
-        public ActionResult LogOut()
+        public virtual ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
 
@@ -55,7 +55,7 @@ namespace DevTrends.MvcDonutCaching.Demo.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public virtual ActionResult Register()
         {
             return View();
         }
@@ -63,7 +63,7 @@ namespace DevTrends.MvcDonutCaching.Demo.Controllers
         //
         // POST: /Account/Register
         [AllowAnonymous, HttpPost]
-        public ActionResult Register(RegisterModel model)
+        public virtual ActionResult Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace DevTrends.MvcDonutCaching.Demo.Controllers
 
         //
         // GET: /Account/ChangePassword
-        public ActionResult ChangePassword()
+        public virtual ActionResult ChangePassword()
         {
             return View();
         }
@@ -95,7 +95,7 @@ namespace DevTrends.MvcDonutCaching.Demo.Controllers
         //
         // POST: /Account/ChangePassword
         [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordModel model)
+        public virtual ActionResult ChangePassword(ChangePasswordModel model)
         {
             if (ModelState.IsValid)
             {
@@ -129,7 +129,7 @@ namespace DevTrends.MvcDonutCaching.Demo.Controllers
 
         //
         // GET: /Account/ChangePasswordSuccess
-        public ActionResult ChangePasswordSuccess()
+        public virtual ActionResult ChangePasswordSuccess()
         {
             return View();
         }
